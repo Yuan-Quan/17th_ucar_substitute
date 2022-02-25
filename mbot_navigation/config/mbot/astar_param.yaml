@@ -1,0 +1,5 @@
+inaccessiblecost: 253
+heuristicfactor: 0.25
+goalsearchtolerance: 0.45
+heuristicname: "Manhattan" #Euler, Manhattan, Chebyshev , Dialog  [default = Manhattan]
+smooth_: true

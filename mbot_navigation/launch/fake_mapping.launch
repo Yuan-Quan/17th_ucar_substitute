@@ -1,0 +1,24 @@
+<launch>
+
+    <!-- 设置地图的配置文件 -->
+    <arg name="map" default="map.yaml" />
+
+    <!-- 运行地图服务器，并且加载设置的地图-->
+    <!--node name="map_server" pkg="map_server" type="map_server" args="$(find mbot_navigation)/maps/$(arg map)"/-->
+
+    <!-- 运行move_base节点 -->
+    <!--include file="$(find mbot_navigation)/launch/move_base.launch"/-->
+
+    <!-- Run fake localization compatible with AMCL output -->
+    <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
+
+    <!-- For fake localization we need static transform between /odom and /map -->
+    <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom_fake 100" />
+
+    <!-- run gmapping-->
+    <include file="$(find mbot_navigation)/launch/gmapping_fake.launch" name="gmapping_fake" output="screen" />
+    
+    <!-- 运行rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mbot_navigation)/rviz/gmapping.rviz"/>
+
+</launch>

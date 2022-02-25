@@ -1,0 +1,32 @@
+<launch>
+
+    <!-- 设置地图的配置文件 -->
+    <!-- <arg name="map" default="map2048.yaml" /> -->
+
+    <!-- 运行地图服务器，并且加载设置的地图-->
+    <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find mbot_navigation)/maps/$(arg map)"/> -->
+
+    <!-- 运行move_base节点 -->
+    <include file="$(find mbot_navigation)/launch/move_base.launch"/>
+
+    <!-- 启动AMCL节点 -->
+    <!-- <include file="$(find mbot_navigation)/launch/amcl.launch" /> -->
+
+    <!-- <node pkg="mbot_navigation" name="dynamic_nav" type="dynamic_nav.py" output="screen" /> -->
+
+    <!-- broad cast path curvature -->
+    <!-- <include file="$(find path_curvature_broadcaster)/launch/path_curvature_broadcaster.launch" /> -->
+
+    <!-- Pure pursuit path tracking -->
+    <!-- <include file="$(find pure_pursuit_controller)/launch/pure_pursuit.launch" /> -->
+
+    <!-- Path curvature speed regulator -->
+    <!-- <include file="$(find path_curvature_speed_regulator)/launch/speed_regulator.launch" /> -->
+
+    <!-- 运行rviz -->
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mbot_navigation)/rviz/nav.rviz"/> -->
+
+    <!-- 启用手柄遥控 -->
+    <!-- <include file="$(find teleop_twist_joy)/launch/teleop.launch" /> -->
+
+</launch>
